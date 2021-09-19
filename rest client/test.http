@@ -1,0 +1,71 @@
+@token = Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzc3ZjA5MjlkMjgzM2ZkYzU1NmNjNTE1ZDYzY2Y0N2M0MTVmMzI0NGIxZDNlOTM5NWU3OTVhYjQ3YWJlN2U2MmI2OTgwNjYxY2E2NjVhZmEiLCJpYXQiOjE2MzE5ODI3ODguNTE1MTU1LCJuYmYiOjE2MzE5ODI3ODguNTE1MTU3LCJleHAiOjE2NjM1MTg3ODguNTAyNzQ1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.E8WSW0wC778eHPld-VqOkzYHyVCqITG6S57KKmtxQLGL0Kn3DjUTnoYDENYZjy-GC_y9pD4D2UPxyknxNuy7wnQqMBDG5Cmpjbmry18BAARSJb1txPTruGGSEc1NA7Fsz_-cWdAj4w4Ufa2pD6Udw1yWBMNg22K5OUMlJ_vwqktMHI-rw4hpxqbk788aLOJ6GvZveBy6rcL7jwAo5qR2dvOIrge1rvjB9mOgzZQ-G3--MuUSPUkcRWZSLV_lQdzSklkjnSPKnDwLpripvCeWBlZmDcK3fi1pyn845Pbsf_K0gQJKLQ1evTXzuwZYIGANgBzAoKUdqAj4dmWRalEMCsYh5HIGabZBapDhFOL1xbNjI9aaOwJLGpp6crMXwWG5grUub08IKVLFdlndhTj_COWLxMrYYmrG80a4kB7q2ZFXsWzcqNfV2u7jzwzeCqGdYjtYTdy4kvkPR1SfJ70rdQvTtlbY9BkL3xZkOjQNDnWXRW9qJQYI7EYqf7tHeFovLPpLCbPKQGEiMl9iJLhbpovqHa7TUtY3fcS9U6cGhUSc2NiwVa0nItNbHwtXXJ6vnemofBD5JODRXh1wc8IoHX_pqH756l0-wO2ICU3WppKCiPe9LKBynCFhjQM4l_O10RDTlANMtwcbQSTMFZ40aVWRKH0-bs12qa7CVm8KJAw
+
+###
+POST http://localhost:8000/api/users/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "arata",
+    "email": "aungmyokhaing.arata@gmail.com",
+    "phone_number": "090909090",
+    "password": "12345678",
+    "password_confirmation": "12345678"
+}
+
+###
+POST http://localhost:8000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "aungmyokhaing.arata@gmail.com",
+    "password": "87654321"
+}
+
+###
+POST http://localhost:8000/api/forgot-password HTTP/1.1
+content-type: application/json
+
+{
+    "email": "aungmyokhaing.arata@gmail.com"
+}
+
+###
+POST http://localhost:8000/api/change-password HTTP/1.1
+content-type: application/json
+
+{
+    "token": "1ddbb7647c7624e44d1bd79bc4d80a4add7483ebf357a8fb7e3696c1318db75f",
+    "email": "aungmyokhaing.arata@gmail.com",
+    "password": "87654321"
+}
+
+###
+POST http://localhost:8000/api/companies/add HTTP/1.1
+content-type: application/json
+Authorization: {{ token }}
+
+{
+    "company_name": "Aung Company",
+    "address": "Aung Address",
+    "phone_number": "09794724212"
+}
+
+###
+POST http://localhost:8000/api/companies/add-favourite HTTP/1.1
+content-type: application/json
+Authorization: {{ token }}
+
+{
+    "company_id": 2
+}
+
+###
+@data = 
+GET http://localhost:8000/api/companies/search/{{ data }} HTTP/1.1
+content-type: application/json
+Authorization: {{ token }}
+
+###
+GET http://localhost:8000/api/companies/favourite-list HTTP/1.1
+content-type: application/json
+Authorization: {{ token }}
